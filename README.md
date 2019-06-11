@@ -8,3 +8,4 @@ Also, please note that I am new to coding. I've been teaching myself python for 
 If you have any suggestions for this project/feedback please let me know as well! 
 
 If Jagex does so happen to add new worlds, please feel free to notify me and I will update the list.
+
