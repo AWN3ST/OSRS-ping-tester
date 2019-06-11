@@ -28,8 +28,8 @@ def NA_pings():
     for x in list_servers:
         if not x:
             continue                
-        A = ping(x, count = 3)
-        avg_pings.append(A.rtt_avg_ms)
+        result = ping(x, count = 3)
+        avg_pings.append(result.rtt_avg_ms)
     ping_worlds = dict(zip(world_numbers, avg_pings))
 
     
@@ -50,8 +50,8 @@ def EU_pings():
     for x in list_servers:
         if not x:
             continue                
-        A = ping(x, count = 3)
-        avg_pings.append(A.rtt_avg_ms)
+        result = ping(x, count = 3)
+        avg_pings.append(result.rtt_avg_ms)
     ping_worlds = dict(zip(world_numbers, avg_pings))
 
     
@@ -72,8 +72,8 @@ def AUS_pings():
     for x in list_servers:
         if not x:
             continue                
-        A = ping(x, count = 3)
-        avg_pings.append(A.rtt_avg_ms)
+        result = ping(x, count = 3)
+        avg_pings.append(result.rtt_avg_ms)
     ping_worlds = dict(zip(world_numbers, avg_pings))
 
     
