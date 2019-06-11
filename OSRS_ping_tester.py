@@ -33,8 +33,8 @@ def NA_pings():
     ping_worlds = dict(zip(world_numbers, avg_pings))
 
     
-    best_5 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
-    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_5[0:10]}\n')
+    best_10 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
+    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
     world, lowest_ping = min(ping_worlds.items(), key = itemgetter(1))
     print(f'Your best world is: w{world} with a ping of {lowest_ping}ms.')
 
@@ -55,8 +55,8 @@ def EU_pings():
     ping_worlds = dict(zip(world_numbers, avg_pings))
 
     
-    best_5 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
-    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_5[0:10]}\n')
+    best_10 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
+    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
     world, lowest_ping = min(ping_worlds.items(), key = itemgetter(1))
     print(f'Your best world is: w{world} with a ping of {lowest_ping}ms.')
 
@@ -77,8 +77,8 @@ def AUS_pings():
     ping_worlds = dict(zip(world_numbers, avg_pings))
 
     
-    best_5 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
-    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_5[0:10]}\n')
+    best_10 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
+    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
     world, lowest_ping = min(ping_worlds.items(), key = itemgetter(1))
     print(f'Your best world is: w{world} with a ping of {lowest_ping}ms.')
     
