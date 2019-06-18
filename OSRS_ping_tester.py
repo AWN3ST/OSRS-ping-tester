@@ -5,9 +5,9 @@ has been self-taught from the knowledge I've acquired over the past 3 months
 on python since I started coding. I understand the code looks very sloppy in
 terms of industry standards, but I'm hoping to make it look better overtime as
 I become more familiar/skilled at programming. With that said, I hope you do
-appreciate the work and effort I've put into this project thus far!
+appreciate the work and effort I've put into this project thus far!'''
 
-'''
+
 
 
 from pythonping import ping
@@ -21,20 +21,48 @@ import time
 def NA_pings(): 
     avg_pings = []
     servers = open('NA_servers.txt','r')
-    list_servers = [line.strip() for line in servers]
-    world_numbers = [line.strip('oldschool.runescape.com') for line in list_servers]
-    ping_worlds = dict(zip(world_numbers, avg_pings))
+    all_servers = [line.strip() for line in servers]
+    f2p_servers = []
+    p2p_servers = []
+
+    #Tests NA f2p servers if user input = f2p
+    for free in all_servers:
+        if free.startswith('f2p'):
+            f2p_servers.append(free)
+            f2p_servers = [line.strip('f2p.') for line in f2p_servers]
+    f2p_world_numbers = [line.strip('f2p.oldschool.runescape.com') for line in f2p_servers]
+
+    #Tests NA p2p servers if user input = p2p
+    for pay in all_servers:
+        if pay.startswith('p2p'):
+            p2p_servers.append(pay)
+            p2p_servers = [line.strip('p2p.') for line in p2p_servers]
+    p2p_world_numbers = [line.strip('oldschool.runescape.com') for line in p2p_servers]
     
-    for x in list_servers:
-        if not x:
-            continue                
-        result = ping(x, count = 3)
-        avg_pings.append(result.rtt_avg_ms)
-    ping_worlds = dict(zip(world_numbers, avg_pings))
+
+    ask_user = input('\nWould you like to test f2p or p2p worlds? ')
+    ask_user = ask_user.lower()
+    if ask_user == 'p2p':
+        print('\nTesting NA P2P worlds... Please be patient...')
+        for x in p2p_servers:
+            if not x:
+                continue                
+            result = ping(x, count = 3)
+            avg_pings.append(result.rtt_avg_ms)
+        ping_worlds = dict(zip(p2p_world_numbers, avg_pings))
+
+    elif ask_user == 'f2p':
+        print('\nTesting NA F2P worlds... Please be patient...')
+        for z in f2p_servers:
+            if not z:
+                continue
+            result = ping(z, count = 3)
+            avg_pings.append(result.rtt_avg_ms)
+        ping_worlds = dict(zip(f2p_world_numbers, avg_pings))
 
     
     best_10 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
-    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
+    print(f'\nYour top worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
     world, lowest_ping = min(ping_worlds.items(), key = itemgetter(1))
     print(f'Your best world is: w{world} with a ping of {lowest_ping}ms.')
 
@@ -43,44 +71,101 @@ def NA_pings():
 def EU_pings():
     avg_pings = []
     servers = open('EU_servers.txt','r')
-    list_servers = [line.strip() for line in servers]
-    world_numbers = [line.strip('oldschool.runescape.com') for line in list_servers]
-    ping_worlds = dict(zip(world_numbers, avg_pings))
+    all_servers = [line.strip() for line in servers]
+    f2p_servers = []
+    p2p_servers = []
     
-    for x in list_servers:
-        if not x:
-            continue                
-        result = ping(x, count = 3)
-        avg_pings.append(result.rtt_avg_ms)
-    ping_worlds = dict(zip(world_numbers, avg_pings))
+    #Tests EU f2p servers if user input = f2p
+    for free in all_servers:
+        if free.startswith('f2p'):
+            f2p_servers.append(free)
+            f2p_servers = [line.strip('f2p.') for line in f2p_servers]
+    f2p_world_numbers = [line.strip('f2p.oldschool.runescape.com') for line in f2p_servers]
+
+    #Tests EU p2p servers if user input = p2p
+    for pay in all_servers:
+        if pay.startswith('p2p'):
+            p2p_servers.append(pay)
+            p2p_servers = [line.strip('p2p.') for line in p2p_servers]
+    p2p_world_numbers = [line.strip('oldschool.runescape.com') for line in p2p_servers]
+    
+
+    ask_user = input('\nWould you like to test f2p or p2p worlds? ')
+    ask_user = ask_user.lower()
+    if ask_user == 'p2p':
+        print('\nTesting EU P2P worlds... Please be patient...')
+        for x in p2p_servers:
+            if not x:
+                continue                
+            result = ping(x, count = 3)
+            avg_pings.append(result.rtt_avg_ms)
+        ping_worlds = dict(zip(p2p_world_numbers, avg_pings))
+
+    elif ask_user == 'f2p':
+        print('\nTesting EU F2P worlds... Please be patient...')
+        for z in f2p_servers:
+            if not z:
+                continue
+            result = ping(z, count = 3)
+            avg_pings.append(result.rtt_avg_ms)
+        ping_worlds = dict(zip(f2p_world_numbers, avg_pings))
 
     
     best_10 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
-    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
+    print(f'\nYour top worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
     world, lowest_ping = min(ping_worlds.items(), key = itemgetter(1))
     print(f'Your best world is: w{world} with a ping of {lowest_ping}ms.')
 
 
-#Tests AUS servers
+#Tests AUS servers'''
 def AUS_pings():
     avg_pings = []
     servers = open('AUS_servers.txt','r')
-    list_servers = [line.strip() for line in servers]
-    world_numbers = [line.strip('oldschool.runescape.com') for line in list_servers]
-    ping_worlds = dict(zip(world_numbers, avg_pings))
+    all_servers = [line.strip() for line in servers]
+    f2p_servers = []
+    p2p_servers = []
+
+    for free in all_servers:
+        if free.startswith('f2p'):
+            f2p_servers.append(free)
+            f2p_servers = [line.strip('f2p.') for line in f2p_servers]
+    f2p_world_numbers = [line.strip('f2p.oldschool.runescape.com') for line in f2p_servers]
+
+    #Tests AU p2p servers if user input = p2p
+    for pay in all_servers:
+        if pay.startswith('p2p'):
+            p2p_servers.append(pay)
+            p2p_servers = [line.strip('p2p.') for line in p2p_servers]
+    p2p_world_numbers = [line.strip('oldschool.runescape.com') for line in p2p_servers]
     
-    for x in list_servers:
-        if not x:
-            continue                
-        result = ping(x, count = 3)
-        avg_pings.append(result.rtt_avg_ms)
-    ping_worlds = dict(zip(world_numbers, avg_pings))
+
+    ask_user = input('\nWould you like to test f2p or p2p worlds? ')
+    ask_user = ask_user.lower()
+    if ask_user == 'p2p':
+        print('\nTesting AUS p2p worlds... please be patient...')
+        for x in p2p_servers:
+            if not x:
+                continue                
+            result = ping(x, count = 3)
+            avg_pings.append(result.rtt_avg_ms)
+        ping_worlds = dict(zip(p2p_world_numbers, avg_pings))
+
+    #Test AU f2p servers if user input = f2p
+    elif ask_user == 'f2p':
+        print('\nTesting AUS f2p worlds... Please be patient...')
+        for z in f2p_servers:
+            if not z:
+                continue
+            result = ping(z, count = 3)
+            avg_pings.append(result.rtt_avg_ms)
+        ping_worlds = dict(zip(f2p_world_numbers, avg_pings))
 
     
     best_10 = sorted(ping_worlds.items(), key=lambda kv: kv[1])
-    print(f'\nYour top 10 worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
+    print(f'\nYour top worlds to play on are (WORLD, PING):\n {best_10[0:10]}\n')
     world, lowest_ping = min(ping_worlds.items(), key = itemgetter(1))
     print(f'Your best world is: w{world} with a ping of {lowest_ping}ms.')
+
     
 
 #Asks user to select their region and calls the function of that region and after testing, asks user if they would like to test again.
@@ -89,37 +174,32 @@ def main():
     region = region.lower()
     while True:
         if region == 'na': 
-            print('\nTesting NA worlds... Please be patient...\n')
             NA_pings()
             while True:
                 region = input('Would you like to test again? (Y/N): ')
                 region = region.lower()
                 if region == 'y':
-                    print('\nTesting NA worlds again... Please be patient...\n')
                     NA_pings()
                 elif region != 'y':
                     quit()
             
         elif region == 'eu':
-            print('\nTesting EU worlds... Please be patient...\n')
             EU_pings()
             while True:
                 region = input('Would you like to test again? (Y/N): ')
                 region = region.lower()
                 if region == 'y':
                     print('\nTesting EU worlds again... Please be patient...\n')
-                    EU_pings()
+                    NA_pings()
                 elif region != 'y':
                     quit()
-
+            
         elif region == 'aus':
-            print('\nTesting AUS worlds... Please be patient...\n')
             AUS_pings()
             while True:
-                region = input('Would you like to test again? (Y/N): ')
+                region = input('\nWould you like to test again? (Y/N): ')
                 region = region.lower()
                 if region == 'y':
-                    print('\nTesting AUS worlds again... Please be patient...\n')
                     AUS_pings()
                 elif region != 'y':
                     quit()
